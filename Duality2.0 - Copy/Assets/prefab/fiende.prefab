@@ -84,6 +84,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1132949754623441626}
+  - component: {fileID: 8766996626255611291}
   - component: {fileID: 8102851703540791733}
   - component: {fileID: 5271574441306855711}
   m_Layer: 5
@@ -113,6 +114,25 @@ RectTransform:
   m_AnchoredPosition: {x: -143, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &8766996626255611291
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1132949754623441627}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd171486aab102944b3ada5708706bcc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  master: {fileID: 0}
+  rig2D: {fileID: 5271574441306855711}
+  speed: 50
+  lifeTimeMax: 15
+  lifeTimeMin: 5
+  damageOnInpact: 10
+  isAlive: 1
 --- !u!61 &8102851703540791733
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -153,8 +173,8 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_AngularDrag: 0
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1

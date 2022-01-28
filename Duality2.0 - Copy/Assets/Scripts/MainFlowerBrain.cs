@@ -21,6 +21,7 @@ public class MainFlowerBrain : MonoBehaviour
     {
 
         flowerContaintger = new GameObject().transform;
+        flowerContaintger.name = "lowerBucket";
         flowerContaintger.position = new Vector3(0, 0, 0);
         flowerContaintger.parent = _canvas.transform;
         _lifeBar.maxValue = 100f;
