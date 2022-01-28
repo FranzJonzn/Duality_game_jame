@@ -197,6 +197,7 @@ GameObject:
   m_Component:
   - component: {fileID: 794665306311259027}
   - component: {fileID: 6066389387378508247}
+  - component: {fileID: 2759317726006247635}
   m_Layer: 5
   m_Name: maingFlower
   m_TagString: Untagged
@@ -250,3 +251,23 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 40, y: 40}
   m_EdgeRadius: 0
+--- !u!114 &2759317726006247635
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 794665306311259024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5983734ee395b9343ba1ed78f8aa4a25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _lifeBar: {fileID: 0}
+  life: 100
+  prefab_flower: {fileID: 8420572293366645235, guid: 1eac43b5d32ffcb4185bf8198b6f56dd, type: 3}
+  floweMask:
+    serializedVersion: 2
+    m_Bits: 64
+  ActiveFlowers: []
+  DeadFLowers: []
