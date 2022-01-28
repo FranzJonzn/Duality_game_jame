@@ -5,10 +5,11 @@ using UnityEngine.UI;
 
 public class ButtonScript : MonoBehaviour
 {
-    
-    void Start()
+
+    public void QuitGame(string QuitGame)
     {
-        this.GetComponent<Image>().alphaHitTestMinimumThreshold = 0.01f; 
+        Debug.Log("does it even quit?");
+        Application.Quit();
     }
-    
+
 }
