@@ -286,6 +286,7 @@ MonoBehaviour:
   grafick_up_diagonal: {fileID: 2650226708483519856}
   grafick_down_diagonal: {fileID: 0}
   grafick_side: {fileID: 5190881398728996254}
+  colidders: {fileID: 6980184867965415170}
   collider_up_diagonal: {fileID: 8404556898001101264}
   collider_down_diagonal: {fileID: 8980463310326936503}
   collider_side: {fileID: 3816473531896291297}

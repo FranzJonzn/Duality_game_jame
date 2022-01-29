@@ -75,24 +75,44 @@ public class Enemy : MonoBehaviour
     {
         //looking
         Vector2 dir =( master.targetFlower.transform.position - transform.position).normalized;
-        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg; 
-        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
 
-        if(transform.eulerAngles.z > 90 && transform.eulerAngles.z < 275)
-        {
-            grafick.transform.localScale   = new Vector3(1, -1, 1);
-            colidders.transform.localScale = new Vector3(1, -1, 1);
-        }
-        else
-        {
-            grafick.transform.localScale   = new Vector3(1, 1, 1);
-            colidders.transform.localScale = new Vector3(1, 1, 1);
-        }
+        Oriante(dir);
+
 
         //move
         rig2D.velocity = dir * speed;
     }
+
+
+    private void Oriante(Vector2 dir)
+    {
+
+
+
+        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+
+
+
+      
+
+        Debug.Log(transform.eulerAngles.z);
+
+
+        if (transform.eulerAngles.z > 90 && transform.eulerAngles.z < 275)
+        {
+            grafick.transform.localScale = new Vector3(1, -1, 1);
+            colidders.transform.localScale = new Vector3(1, -1, 1);
+        }
+        else
+        {
+            grafick.transform.localScale = new Vector3(1, 1, 1);
+            colidders.transform.localScale = new Vector3(1, 1, 1);
+        }
+
+    }
+
 
 
     public IEnumerator LifeTime()
