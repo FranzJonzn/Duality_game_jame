@@ -92,8 +92,8 @@ public class Enemy : MonoBehaviour
 
 
 
-        //float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-        //transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         float angleForSIde = 0.2f;
 
         if (dir.x < 0)// höger sida
@@ -111,7 +111,7 @@ public class Enemy : MonoBehaviour
   
         }
 
-
+        collider_side.gameObject.SetActive(true);
 
         if ((dir.y < angleForSIde && dir.y > -angleForSIde))
         {
@@ -119,8 +119,8 @@ public class Enemy : MonoBehaviour
             {
                 grafick_down_diagonal.SetActive(false);
                 grafick_up_diagonal.SetActive(false);
-                collider_down_diagonal.gameObject.SetActive(false);
-                collider_up_diagonal.gameObject.SetActive(false);
+                //collider_down_diagonal.gameObject.SetActive(false);
+                //collider_up_diagonal.gameObject.SetActive(false);
 
 
 
@@ -136,8 +136,8 @@ public class Enemy : MonoBehaviour
             {
                 grafick_up_diagonal.SetActive(false);
                 grafick_side.SetActive(false);
-                collider_up_diagonal.gameObject.SetActive(false);
-                collider_side.gameObject.SetActive(false);
+                //collider_up_diagonal.gameObject.SetActive(false);
+                //collider_side.gameObject.SetActive(false);
 
                 grafick_down_diagonal.SetActive(true);
                 collider_down_diagonal.gameObject.SetActive(true);
@@ -152,11 +152,11 @@ public class Enemy : MonoBehaviour
             {
                 grafick_down_diagonal.SetActive(false);
                 grafick_side.SetActive(false);
-                collider_side.gameObject.SetActive(false);
+                //collider_side.gameObject.SetActive(false);
 
 
                 grafick_up_diagonal.SetActive(true);
-                collider_up_diagonal.gameObject.SetActive(true);
+                //collider_up_diagonal.gameObject.SetActive(true);
 
                 curretD = currentDirr.UP;
             }
