@@ -17,6 +17,8 @@ public class AttackFlower : MonoBehaviour
     public Collider2D thisCollider;
     private Coroutine draineRoutine;
 
+    public float MaxLifeRetun = 100;
+    private float lifeDrainde = 0;
     public void ActiveFLower(MainFlowerBrain brain)
     {
         if(ref_mainFlower == null)
@@ -36,7 +38,7 @@ public class AttackFlower : MonoBehaviour
         thisCollider.enabled = false;
         alive = false;
         StopCoroutine(draineRoutine);
-        return lifeBackOnDef;
+        return Mathf.Clamp( lifeDrainde, 0, MaxLifeRetun);
     }
 
   
@@ -45,6 +47,7 @@ public class AttackFlower : MonoBehaviour
     {
         while (alive)
         {
+            lifeDrainde += costPerSecond;
             ref_mainFlower.Damage(costPerSecond);
             yield return new WaitForSeconds(1);
         }

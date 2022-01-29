@@ -52,19 +52,23 @@ public class MainFlowerBrain : MonoBehaviour
                 DeadFLowers.Add(hit.collider.gameObject);
                 ActiveFlowers.Remove(hit.collider.gameObject);
                 life += hit.collider.GetComponent<AttackFlower>().Kill();
+                life = Mathf.Clamp(life, _lifeBar.minValue, _lifeBar.maxValue);
+
             }
             
 
         }
 
-
+        _lifeBar.value = life;
     }
 
     public void Damage(float damage)
     {
 
-        life -= damage;
-        _lifeBar.value = life;
+      
+        life = Mathf.Clamp(life - damage, _lifeBar.minValue, _lifeBar.maxValue);  
+
+       
     }
 
 
