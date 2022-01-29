@@ -55,7 +55,6 @@ public class MainFlowerBrain : MonoBehaviour
 
             if (hit)
             {
-                Debug.Log("here");
                 DeadFLowers.Add(hit.collider.gameObject);
                 ActiveFlowers.Remove(hit.collider.gameObject);
                 life += hit.collider.GetComponent<AttackFlower>().Kill();

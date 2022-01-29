@@ -192,6 +192,7 @@ MonoBehaviour:
   lifeTimeMin: 5
   damageOnInpact: 10
   isAlive: 1
+  grafick: {fileID: 6428605896494533922}
 --- !u!50 &195353655342892868
 Rigidbody2D:
   serializedVersion: 4

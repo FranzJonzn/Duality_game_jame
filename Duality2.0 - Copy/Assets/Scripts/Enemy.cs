@@ -15,7 +15,7 @@ public class Enemy : MonoBehaviour
 
     public bool isAlive = true;
 
-
+    public GameObject grafick;
 
 
     public void ActivateEnemy(EnemyMaster myMaster)
@@ -61,6 +61,16 @@ public class Enemy : MonoBehaviour
         Vector2 dir =( master.targetFlower.transform.position - transform.position).normalized;
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg; 
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+
+
+        if(transform.eulerAngles.z > 90 && transform.eulerAngles.z < 275)
+        {
+            grafick.transform.localScale = new Vector3(1, -1, 1);
+        }
+        else
+        {
+            grafick.transform.localScale = new Vector3(1, 1, 1);
+        }
 
         //move
         rig2D.velocity = dir * speed;

@@ -564,7 +564,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: d04a2f6de4a3c0a44b64d8fcd306c586, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 535efef250a0abe44b4ba650a51085e7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -625,7 +625,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 91}
+  m_AnchoredPosition: {x: 0, y: 131}
   m_SizeDelta: {x: 160, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1703434560
@@ -897,6 +897,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3115542480379282742, guid: 9c6c6e20f28e8fc49b5968b5a1d2c850, type: 3}
+      propertyPath: m_Size.x
+      value: 1.0607326
+      objectReference: {fileID: 0}
+    - target: {fileID: 3115542480379282742, guid: 9c6c6e20f28e8fc49b5968b5a1d2c850, type: 3}
+      propertyPath: m_Size.y
+      value: 0.7720475
+      objectReference: {fileID: 0}
+    - target: {fileID: 3115542480379282742, guid: 9c6c6e20f28e8fc49b5968b5a1d2c850, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.0029033422
+      objectReference: {fileID: 0}
+    - target: {fileID: 3115542480379282742, guid: 9c6c6e20f28e8fc49b5968b5a1d2c850, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.030039296
+      objectReference: {fileID: 0}
     - target: {fileID: 3971723015315295564, guid: 9c6c6e20f28e8fc49b5968b5a1d2c850, type: 3}
       propertyPath: m_Name
       value: MaingFLower
@@ -907,11 +923,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3971723015315295565, guid: 9c6c6e20f28e8fc49b5968b5a1d2c850, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.102
       objectReference: {fileID: 0}
     - target: {fileID: 3971723015315295565, guid: 9c6c6e20f28e8fc49b5968b5a1d2c850, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.03
       objectReference: {fileID: 0}
     - target: {fileID: 3971723015315295565, guid: 9c6c6e20f28e8fc49b5968b5a1d2c850, type: 3}
       propertyPath: m_LocalPosition.z
@@ -949,6 +965,14 @@ PrefabInstance:
       propertyPath: _lifeBar
       value: 
       objectReference: {fileID: 1703434560}
+    - target: {fileID: 3971723016304853234, guid: 9c6c6e20f28e8fc49b5968b5a1d2c850, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.038
+      objectReference: {fileID: 0}
+    - target: {fileID: 3971723016304853234, guid: 9c6c6e20f28e8fc49b5968b5a1d2c850, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.474
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9c6c6e20f28e8fc49b5968b5a1d2c850, type: 3}
 --- !u!1001 &9049860142761389134
