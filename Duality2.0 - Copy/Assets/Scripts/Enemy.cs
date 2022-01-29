@@ -16,14 +16,26 @@ public class Enemy : MonoBehaviour
     public bool isAlive = true;
 
 
+
+
+    public void ActivateEnemy(EnemyMaster myMaster)
+    {
+        master = myMaster;
+
+        life = StartCoroutine(LifeTime());
+    }
+
+
     private void Update()
     {
 
         if (master != null)
         {
-            Vector2 dir = (master.targetFlower.transform.position - transform.position).normalized;
-            rig2D.velocity = dir * speed;
-            transform.rotation.SetLookRotation(dir);
+            //Vector2 dir = (master.targetFlower.transform.position - transform.position).normalized;
+
+            //transform.rotation.SetLookRotation(dir);
+   
+            Move();
         }
         if (!isAlive)
         {
@@ -32,11 +44,10 @@ public class Enemy : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("here");
+    
         MainFlowerBrain brain = collision.gameObject.GetComponent<MainFlowerBrain>();
         if (brain != null)
         {
-            Debug.Log("here2");
             brain.Damage(damageOnInpact);
             StopCoroutine(life);
             isAlive = false;
@@ -44,14 +55,15 @@ public class Enemy : MonoBehaviour
     }
 
 
-    public void ActivateEnemy(EnemyMaster myMaster)
+    private void Move()
     {
-        master = myMaster;
- 
-        life = StartCoroutine(LifeTime());
+        //looking
+        Vector2 dir =( master.targetFlower.transform.position - transform.position).normalized;
+        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg; 
+        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
-
-
+        //move
+        rig2D.velocity = dir * speed;
     }
 
 

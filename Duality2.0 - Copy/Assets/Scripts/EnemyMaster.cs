@@ -83,6 +83,8 @@ public class EnemyMaster : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(Random.Range(spawnDelayMin, spawnDelayMax));
+
+            yield return null;
             spwanEnemy();
         }
     }
