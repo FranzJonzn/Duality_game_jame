@@ -53,13 +53,18 @@ public class UnderHodStuff : MonoBehaviour
 
         foreach (SpriteRenderer sr in all)
         {
-            if (sr.gameObject.tag != "back")
+            if (sr.gameObject.tag == "back")
             {
-                renderers.Add(sr);
+                sr.sortingOrder = -all.Length;
+          
+            }
+            else if (sr.gameObject.tag == "front")
+            {
+                sr.sortingOrder = all.Length+1;
             }
             else
             {
-                sr.sortingOrder = -all.Length;
+                renderers.Add(sr);
             }
         }
 
