@@ -31,8 +31,22 @@ public class UnderHodStuff : MonoBehaviour
     public Camera curretnCamera;
 
 
-    public Rect playFeild { get { return new Rect(new Vector2(curretnCamera.pixelWidth * 0.5f, curretnCamera.pixelHeight * 0.5f), 
-                                                  new Vector2(curretnCamera.pixelWidth , curretnCamera.pixelHeight )); } }
+    public Rect playFeild { get { return new Rect(new Vector2(0,0),
+                                                  curretnCamera.ScreenToWorldPoint( new Vector2(curretnCamera.scaledPixelWidth*1.5f , curretnCamera.scaledPixelHeight* 1.5f))); } }
+
+
+
+
+    public Vector3 getMousPosition
+    {
+        get
+        {
+            Vector3 mousePos = Input.mousePosition;
+            mousePos.z = curretnCamera.nearClipPlane;
+            return curretnCamera.ScreenToWorldPoint(mousePos);
+
+        }
+    }
 
     private void OnDrawGizmos()
     {

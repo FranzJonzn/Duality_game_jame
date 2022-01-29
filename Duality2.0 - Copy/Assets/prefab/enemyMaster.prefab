@@ -43,9 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18fd0c8525103174db4bc5a3f243559a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _canvas: {fileID: 0}
-  prefab_enemy: {fileID: 1132949754623441627, guid: 78de091cef13d414db39115062a1a314, type: 3}
-  bacground: {fileID: 0}
+  prefab_enemy: {fileID: 6428605897549997906, guid: 21ecf694871daac4096d59e370566aee, type: 3}
   targetFlower: {fileID: 0}
   spawnDelayMin: 5
   spawnDelayMax: 15

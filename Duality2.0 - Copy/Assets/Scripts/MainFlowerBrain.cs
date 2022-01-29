@@ -5,8 +5,6 @@ using UnityEngine.UI;
 
 public class MainFlowerBrain : MonoBehaviour
 {
-
-    public Canvas _canvas;
     public Slider _lifeBar;
     public float life = 100f;
     public GameObject prefab_flower;
@@ -29,7 +27,7 @@ public class MainFlowerBrain : MonoBehaviour
         flowerContaintger = new GameObject().transform;
         flowerContaintger.name = "lowerBucket";
         flowerContaintger.position = new Vector3(0, 0, 0);
-        flowerContaintger.parent = _canvas.transform;
+
         _lifeBar.maxValue = 100f;
         _lifeBar.value = 100f;
     }
@@ -40,7 +38,10 @@ public class MainFlowerBrain : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            GameObject newFlowe = Instantiate(prefab_flower, Input.mousePosition, prefab_flower.transform.rotation, flowerContaintger); //, Quaternion.identity);
+
+
+
+            GameObject newFlowe = Instantiate(prefab_flower, UnderHodStuff.instance.getMousPosition, prefab_flower.transform.rotation, flowerContaintger); //, Quaternion.identity);
             newFlowe.GetComponent<AttackFlower>().ActiveFLower(this);
             ActiveFlowers.Add(newFlowe);
 
@@ -49,7 +50,7 @@ public class MainFlowerBrain : MonoBehaviour
         {
 
 
-            RaycastHit2D hit = Physics2D.Raycast(Input.mousePosition, Vector2.zero, Mathf.Infinity, floweMask.value);
+            RaycastHit2D hit = Physics2D.Raycast(UnderHodStuff.instance.getMousPosition, Vector2.zero, Mathf.Infinity, floweMask.value);
   
 
             if (hit)
@@ -74,6 +75,9 @@ public class MainFlowerBrain : MonoBehaviour
             i.color = Color.Lerp(weakColor, strongColor, life / _lifeBar.maxValue);
         }
     }
+
+  
+
 
     public void Damage(float damage)
     {

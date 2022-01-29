@@ -13,7 +13,7 @@ public class AttackFlower : MonoBehaviour
 
     public GameObject alive;
     public GameObject dead;
-
+    public Collider2D colider;
     private Coroutine draineRoutine;
 
 
@@ -39,6 +39,7 @@ public class AttackFlower : MonoBehaviour
     {
         alive.SetActive(false);
         dead.SetActive(true);
+        colider.enabled = false;
         isAlive = false;
         StopCoroutine(draineRoutine);
         return lifeDrainde;

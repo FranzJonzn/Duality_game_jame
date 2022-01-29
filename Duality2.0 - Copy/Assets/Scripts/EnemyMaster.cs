@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class EnemyMaster : MonoBehaviour
 {
-    public Canvas _canvas;
+
     public GameObject prefab_enemy;
-    public RectTransform bacground;
     public GameObject targetFlower;
 
     public float spawnDelayMin = 1f;
@@ -26,7 +25,7 @@ public class EnemyMaster : MonoBehaviour
         enemyBucket = new GameObject().transform;
         enemyBucket.name = "enemyBucket";
         enemyBucket.position = new Vector3(0, 0, 0);
-        enemyBucket.parent = _canvas.transform;
+ 
         spawnerLogich =  StartCoroutine(SpawnLogik());
   
 
@@ -52,11 +51,11 @@ public class EnemyMaster : MonoBehaviour
         Vector2 pos;
         if ((Random.Range(0f, 1f) > 0.5f))
         {
-             pos = (Vector2)bacground.position - new Vector2(Random.Range(0f, 1f) * plane.size.x * 0.5f, random2 * plane.size.y * 0.5f);
+             pos = Vector2.zero - new Vector2(Random.Range(0f, 1f) * plane.size.x * 0.5f, random2 * plane.size.y * 0.5f);
         }
         else
         {
-            pos = (Vector2)bacground.position - new Vector2(random1 * plane.size.x * 0.5f, Random.Range(0f, 1f) * plane.size.y * 0.5f);
+            pos = Vector2.zero - new Vector2(random1 * plane.size.x * 0.5f, Random.Range(0f, 1f) * plane.size.y * 0.5f);
         }
 
 
