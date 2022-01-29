@@ -5,12 +5,12 @@ using UnityEngine.UI;
 
 public class AttackFlower : MonoBehaviour
 {
-    public bool isAlive = true;
+     bool isAlive = true;
     MainFlowerBrain ref_mainFlower;
 
     public float costPerSecond = 1f;
     public float lifeBackOnDef = 5f;
-
+    
     public GameObject alive;
     public GameObject dead;
     public Collider2D colider;
@@ -29,7 +29,18 @@ public class AttackFlower : MonoBehaviour
         {
             ref_mainFlower = brain;
             draineRoutine = StartCoroutine(draineLife());
+
+         
+            //sets so the flowers apper behing the maine flower then there behínde it (main floweer should be 0)
+            alive.GetComponentInChildren<SpriteRenderer>().sortingOrder = (ref_mainFlower.transform.position.y < transform.position.y) ? -1 : 1;
+
+            //randomly flips it to get variation
+            int random1 = (Random.Range(0f, 1f) > 0.5f) ? -1 : 1;
+            transform.localScale = new Vector3(random1, 1, 1);
+
         }
+
+
 
     }
 

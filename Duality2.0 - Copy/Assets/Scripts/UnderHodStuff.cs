@@ -36,6 +36,87 @@ public class UnderHodStuff : MonoBehaviour
 
 
 
+    private void Update()
+    {
+
+        SortAllSPrites();
+
+    }
+    //not effeicent, just need it to work
+    private void SortAllSPrites()
+    {
+        SpriteRenderer[] all = FindObjectsOfType<SpriteRenderer>();
+        List<SpriteRenderer> renderers = new List<SpriteRenderer>();
+
+
+
+
+        foreach (SpriteRenderer sr in all)
+        {
+            if (sr.gameObject.tag != "back")
+            {
+                renderers.Add(sr);
+            }
+            else
+            {
+                sr.sortingOrder = -all.Length;
+            }
+        }
+
+        //if (renderers.Count > 7)
+        //{
+        //    int curretn = 0;
+        //    Vector3 lase = Vector3.zero;
+        //    foreach (SpriteRenderer sr in renderers)
+        //    {
+        //        if (curretn != 0)
+        //        {
+        //            Debug.DrawLine(sr.transform.parent.position, lase, Color.red);
+        //        }
+        //        sr.sortingOrder = curretn++;
+        //        lase = sr.transform.parent.position;
+
+        //    }
+
+        //}
+
+
+
+        //sortList (antar att alla sprits utom back ligger i årdning Graphic_grafiken
+        renderers.Sort(delegate (SpriteRenderer a, SpriteRenderer b) {
+            return Vector3.Distance(new Vector3(a.transform.parent.position.x, -100,0), a.transform.parent.position).
+         CompareTo(Vector3.Distance(new Vector3(b.transform.parent.position.x, -100,0), b.transform.parent.position));
+        });
+
+
+        int curretn = renderers.Count;
+        foreach (SpriteRenderer sr in renderers)
+        {
+
+            sr.sortingOrder = curretn--;
+    
+
+        }
+
+        // shows the order of the object 
+        //if (renderers.Count > 7)
+        //{
+        //    bool skipFirst = false;
+        //    Vector3 lase = Vector3.zero;
+        //    foreach (SpriteRenderer sr in renderers)
+        //    {
+        //        if (skipFirst)
+        //        {
+        //            Debug.DrawLine(sr.transform.parent.position, lase, Color.red);
+        //        }
+        //        skipFirst = true;
+        //        lase = sr.transform.parent.position;
+
+        //    }
+        //    Debug.LogError("pause");
+        //}
+
+    }
 
     public Vector3 getMousPosition
     {
@@ -43,7 +124,10 @@ public class UnderHodStuff : MonoBehaviour
         {
             Vector3 mousePos = Input.mousePosition;
             mousePos.z = curretnCamera.nearClipPlane;
-            return curretnCamera.ScreenToWorldPoint(mousePos);
+
+            Vector3 retrunValue = curretnCamera.ScreenToWorldPoint(mousePos);
+            retrunValue = new Vector3(retrunValue.x, retrunValue.y, 0f);
+            return  retrunValue;
 
         }
     }

@@ -5,31 +5,39 @@ using UnityEngine.UI;
 
 public class MainFlowerBrain : MonoBehaviour
 {
-    public Slider _lifeBar;
+    public float lifeMin = 0;
     public float life = 100f;
+    public float lifeMax = 100f;
+    [Space]
+    [Space]
+
     public GameObject prefab_flower;
-
     public LayerMask floweMask;
-
-
-
-    public Color weakColor = Color.yellow;
-    public Color strongColor = Color.red;
+    [Space]
 
     public List<GameObject> ActiveFlowers = new List<GameObject>();
     public List<GameObject> DeadFLowers = new List<GameObject>();
+    [Space]
+    [Space]
+
+    public Sprite[] sprits;
+    public SpriteRenderer sRenderer;
+    public int part = 0;
+
 
     private Transform flowerContaintger;
    
     private void Start()
     {
 
+
+
         flowerContaintger = new GameObject().transform;
         flowerContaintger.name = "lowerBucket";
         flowerContaintger.position = new Vector3(0, 0, 0);
 
-        _lifeBar.maxValue = 100f;
-        _lifeBar.value = 100f;
+        life = lifeMax;
+        
     }
 
 
@@ -42,6 +50,7 @@ public class MainFlowerBrain : MonoBehaviour
 
 
             GameObject newFlowe = Instantiate(prefab_flower, UnderHodStuff.instance.getMousPosition, prefab_flower.transform.rotation, flowerContaintger); //, Quaternion.identity);
+
             newFlowe.GetComponent<AttackFlower>().ActiveFLower(this);
             ActiveFlowers.Add(newFlowe);
 
@@ -57,22 +66,17 @@ public class MainFlowerBrain : MonoBehaviour
             {
                 DeadFLowers.Add(hit.collider.gameObject);
                 ActiveFlowers.Remove(hit.collider.gameObject);
-                life += hit.collider.GetComponent<AttackFlower>().Kill();
-                life = Mathf.Clamp(life, _lifeBar.minValue, _lifeBar.maxValue);
-
+                life = Mathf.Clamp(life+ hit.collider.GetComponent<AttackFlower>().Kill(), lifeMin, lifeMax);
+                UppdateSprite();
             }
             
 
         }
 
-        _lifeBar.value = life;
 
-        Image[] images = GetComponentsInChildren<Image>();
 
-        foreach (Image i in images)
-        {
-            i.color = Color.Lerp(weakColor, strongColor, life / _lifeBar.maxValue);
-        }
+
+        
     }
 
   
@@ -81,14 +85,29 @@ public class MainFlowerBrain : MonoBehaviour
     public void Damage(float damage)
     {
 
-      
-        life = Mathf.Clamp(life - damage, _lifeBar.minValue, _lifeBar.maxValue);  
 
-       
+        life = Mathf.Clamp(life-damage, lifeMin, lifeMax);
+
+        UppdateSprite();
+
     }
 
+    private void UppdateSprite()
+    {
+        part = Mathf.Clamp((int)((life / lifeMax) * 10), 0, sprits.Length);
+        sRenderer.sprite = sprits[part];
+    }
 
-
+    //public float blincSec = 1;
+    //public int blinckCount = 3;
+    //private IEnumerator losLife()
+    //{
+        
+    //    for(int i = 0; i < blinckCount; ++i)
+    //    {
+    //        yield return new WaitForSeconds(blincSec);
+    //    }
+    //}
 
 
 }
