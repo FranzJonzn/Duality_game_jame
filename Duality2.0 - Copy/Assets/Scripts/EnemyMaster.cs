@@ -34,25 +34,29 @@ public class EnemyMaster : MonoBehaviour
 
     private void Update()
     {
-        float height = Camera.main.orthographicSize;
-        float width = Camera.main.orthographicSize * Camera.main.aspect + 1;
-        Debug.DrawLine(Vector2.zero, new Vector2(width, height));
+
+
+
     }
+
+
 
 
     private void spwanEnemy()
     {
+
+        Rect plane = UnderHodStuff.instance.playFeild;
 
         int random1 = (Random.Range(0f, 1f) > 0.5f) ? -1 : 1;
         int random2 = (Random.Range(0f, 1f) > 0.5f) ? -1 : 1;
         Vector2 pos;
         if ((Random.Range(0f, 1f) > 0.5f))
         {
-             pos = (Vector2)bacground.position - new Vector2(Random.Range(0f, 1f) * bacground.rect.width * 0.5f, random2 * bacground.rect.height * 0.5f);
+             pos = (Vector2)bacground.position - new Vector2(Random.Range(0f, 1f) * plane.size.x * 0.5f, random2 * plane.size.y * 0.5f);
         }
         else
         {
-            pos = (Vector2)bacground.position - new Vector2(random1 * bacground.rect.width * 0.5f, Random.Range(0f, 1f) * bacground.rect.height * 0.5f);
+            pos = (Vector2)bacground.position - new Vector2(random1 * plane.size.x * 0.5f, Random.Range(0f, 1f) * plane.size.y * 0.5f);
         }
 
 
