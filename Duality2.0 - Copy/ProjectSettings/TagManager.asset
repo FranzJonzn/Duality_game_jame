@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - back
+  - front
   layers:
   - Default
   - TransparentFX

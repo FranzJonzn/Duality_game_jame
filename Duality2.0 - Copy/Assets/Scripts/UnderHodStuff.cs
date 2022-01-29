@@ -53,13 +53,18 @@ public class UnderHodStuff : MonoBehaviour
 
         foreach (SpriteRenderer sr in all)
         {
-            if (sr.gameObject.tag != "back")
+            if (sr.gameObject.tag == "back")
             {
-                renderers.Add(sr);
+                sr.sortingOrder = -all.Length;
+          
+            }
+            else if (sr.gameObject.tag == "front")
+            {
+                sr.sortingOrder = all.Length+1;
             }
             else
             {
-                sr.sortingOrder = -all.Length;
+                renderers.Add(sr);
             }
         }
 
@@ -132,8 +137,87 @@ public class UnderHodStuff : MonoBehaviour
         }
     }
 
+    private Matrix4x4 RotatZ(float aANgleRad)
+    {
+        Matrix4x4 m = Matrix4x4.identity;
+        m.m00 = m.m11 = Mathf.Cos(aANgleRad);
+        m.m10 = Mathf.Sin(aANgleRad);
+        m.m01 = -m.m10;
+        return m;
+    }
+    public GameObject temp;
     private void OnDrawGizmos()
     {
+
+
+        Gizmos.DrawLine(Vector3.zero, RotatZ(45*Mathf.Deg2Rad)   * new Vector3(0, 1, 0) * 10);
+        Gizmos.color = Color.red;
+        Gizmos.DrawLine(Vector3.zero, RotatZ(90 * Mathf.Deg2Rad) * new Vector3(0, 1, 0) * 10);
+        Gizmos.color = Color.blue;
+        Gizmos.DrawLine(Vector3.zero, RotatZ(135 * Mathf.Deg2Rad) * new Vector3(0, 1, 0) * 10);
+        Gizmos.color = Color.green;
+        Gizmos.DrawLine(Vector3.zero, RotatZ(180 * Mathf.Deg2Rad) * new Vector3(0, 1, 0) * 10);
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawLine(Vector3.zero, RotatZ(225 * Mathf.Deg2Rad) * new Vector3(0, 1, 0) * 10);
+        Gizmos.color = Color.black;
+        Gizmos.DrawLine(Vector3.zero, RotatZ(270 * Mathf.Deg2Rad) * new Vector3(0, 1, 0) * 10);
+
+        if(temp != null)
+        {
+
+
+
+            Vector3 dir = (-temp.transform.position).normalized;
+            //float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+            //temp.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+
+            //float z = temp.transform.eulerAngles.z;
+
+            //Vector3 te2mp = (RotatZ(90 * Mathf.Deg2Rad) * new Vector3(0, 1, 0));
+            //float z90 = te2mp.z;
+
+            //te2mp = (RotatZ(135 * Mathf.Deg2Rad) * new Vector3(0, 1, 0));
+            //float z135 = te2mp.z;
+
+
+            //(dir.x > 0.0 && dir.x > -0.6) högra sidan av skärmen
+            //(dir.x < 0.0 && dir.x < 0.6) vänstra sidan
+
+            //(dir.y > 0.0 && dir.y > -0.8) högra sidan av skärmen
+            //(dir.y < 0.0 && dir.y < 0.8) vänstra sidan
+
+
+            Debug.Log(dir);
+
+            if(dir.x < -1 && dir.x > -0.8)
+            {
+
+            }
+            if(dir.x < 0)// höger sida
+            {
+                if( dir.y < 0)//över
+                {
+
+                }
+                else //under
+                {
+
+                }
+            }
+            else //vänster sida
+            {
+
+            }
+
+            if (dir.x > 0.0 && dir.x > -0.6)
+            {
+                Gizmos.color = Color.blue;
+            }
+
+            Gizmos.DrawLine(Vector3.zero, temp.transform.position);
+
+        }
+
         //Camera curretn = Camera.main;
         //if (curretnCamera != null)
         //{
