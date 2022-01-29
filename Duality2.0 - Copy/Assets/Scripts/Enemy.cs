@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    private enum currentDirr {  UP, DOWN, SIDE, NON}
+    currentDirr curretD = currentDirr.NON;
 
     public EnemyMaster master;
     public Rigidbody2D rig2D = null;
@@ -90,26 +92,96 @@ public class Enemy : MonoBehaviour
 
 
 
-        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        //float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        //transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        float angleForSIde = 0.2f;
 
-
-
-      
-
-        Debug.Log(transform.eulerAngles.z);
-
-
-        if (transform.eulerAngles.z > 90 && transform.eulerAngles.z < 275)
+        if (dir.x < 0)// höger sida
         {
-            grafick.transform.localScale = new Vector3(1, -1, 1);
-            colidders.transform.localScale = new Vector3(1, -1, 1);
+
+            grafick.transform.localScale   = new Vector3(-1, 1, 1);
+            colidders.transform.localScale = new Vector3(-1, 1, 1);
+
+        }
+        else //vänster sida
+        {
+
+            grafick.transform.localScale   = new Vector3(1, 1, 1);
+            colidders.transform.localScale = new Vector3(1, 1, 1);
+  
+        }
+
+
+
+        if ((dir.y < angleForSIde && dir.y > -angleForSIde))
+        {
+            if (curretD != currentDirr.SIDE)
+            {
+                grafick_down_diagonal.SetActive(false);
+                grafick_up_diagonal.SetActive(false);
+                collider_down_diagonal.gameObject.SetActive(false);
+                collider_up_diagonal.gameObject.SetActive(false);
+
+
+
+                grafick_side.SetActive(true);
+                collider_side.gameObject.SetActive(true);
+                curretD = currentDirr.SIDE;
+            }
+        }
+        else if (dir.y < 0)
+        {
+
+            if (curretD != currentDirr.DOWN)
+            {
+                grafick_up_diagonal.SetActive(false);
+                grafick_side.SetActive(false);
+                collider_up_diagonal.gameObject.SetActive(false);
+                collider_side.gameObject.SetActive(false);
+
+                grafick_down_diagonal.SetActive(true);
+                collider_down_diagonal.gameObject.SetActive(true);
+
+                curretD = currentDirr.DOWN;
+            }
         }
         else
         {
-            grafick.transform.localScale = new Vector3(1, 1, 1);
-            colidders.transform.localScale = new Vector3(1, 1, 1);
+
+            if(curretD != currentDirr.UP)
+            {
+                grafick_down_diagonal.SetActive(false);
+                grafick_side.SetActive(false);
+                collider_side.gameObject.SetActive(false);
+
+
+                grafick_up_diagonal.SetActive(true);
+                collider_up_diagonal.gameObject.SetActive(true);
+
+                curretD = currentDirr.UP;
+            }
+
+  
+
         }
+
+
+
+
+
+        //Debug.Log(transform.eulerAngles.z);
+
+
+        //if (transform.eulerAngles.z > 90 && transform.eulerAngles.z < 275)
+        //{
+        //    grafick.transform.localScale = new Vector3(1, -1, 1);
+        //    colidders.transform.localScale = new Vector3(1, -1, 1);
+        //}
+        //else
+        //{
+        //    grafick.transform.localScale = new Vector3(1, 1, 1);
+        //    colidders.transform.localScale = new Vector3(1, 1, 1);
+        //}
 
     }
 

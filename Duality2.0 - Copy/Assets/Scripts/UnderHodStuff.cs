@@ -146,77 +146,64 @@ public class UnderHodStuff : MonoBehaviour
         return m;
     }
     public GameObject temp;
+    public float angleForSIde = 0.4f;
     private void OnDrawGizmos()
     {
 
-
-        Gizmos.DrawLine(Vector3.zero, RotatZ(45*Mathf.Deg2Rad)   * new Vector3(0, 1, 0) * 10);
-        Gizmos.color = Color.red;
-        Gizmos.DrawLine(Vector3.zero, RotatZ(90 * Mathf.Deg2Rad) * new Vector3(0, 1, 0) * 10);
-        Gizmos.color = Color.blue;
-        Gizmos.DrawLine(Vector3.zero, RotatZ(135 * Mathf.Deg2Rad) * new Vector3(0, 1, 0) * 10);
-        Gizmos.color = Color.green;
-        Gizmos.DrawLine(Vector3.zero, RotatZ(180 * Mathf.Deg2Rad) * new Vector3(0, 1, 0) * 10);
-        Gizmos.color = Color.cyan;
-        Gizmos.DrawLine(Vector3.zero, RotatZ(225 * Mathf.Deg2Rad) * new Vector3(0, 1, 0) * 10);
-        Gizmos.color = Color.black;
-        Gizmos.DrawLine(Vector3.zero, RotatZ(270 * Mathf.Deg2Rad) * new Vector3(0, 1, 0) * 10);
-
-        if(temp != null)
-        {
+        //Gizmos.color = Color.red;
+        //Gizmos.DrawLine(Vector3.zero, new Vector3(-0.8f, -0.6f,0.0f));
+        //Gizmos.color = Color.blue;
+        //Gizmos.DrawLine(Vector3.zero, new Vector3(0.8f, -0.6f, 0.0f));
+        //Gizmos.color = Color.green;
+        //Gizmos.DrawLine(Vector3.zero, new Vector3(0.8f, 0.6f, 0.0f));
+        //Gizmos.color = Color.cyan;
+        //Gizmos.DrawLine(Vector3.zero, new Vector3(-0.8f, 0.6f, 0.0f));
+        //if (temp != null)
+        //{
 
 
 
-            Vector3 dir = (-temp.transform.position).normalized;
-            //float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-            //temp.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-
-            //float z = temp.transform.eulerAngles.z;
-
-            //Vector3 te2mp = (RotatZ(90 * Mathf.Deg2Rad) * new Vector3(0, 1, 0));
-            //float z90 = te2mp.z;
-
-            //te2mp = (RotatZ(135 * Mathf.Deg2Rad) * new Vector3(0, 1, 0));
-            //float z135 = te2mp.z;
+        //    Vector3 dir = (-temp.transform.position).normalized;
+ 
 
 
-            //(dir.x > 0.0 && dir.x > -0.6) högra sidan av skärmen
-            //(dir.x < 0.0 && dir.x < 0.6) vänstra sidan
-
-            //(dir.y > 0.0 && dir.y > -0.8) högra sidan av skärmen
-            //(dir.y < 0.0 && dir.y < 0.8) vänstra sidan
+        //    Debug.Log(dir);
 
 
-            Debug.Log(dir);
+     
+        //    if(dir.x < 0)// höger sida
+        //    {
 
-            if(dir.x < -1 && dir.x > -0.8)
-            {
+        //        Gizmos.color = Color.blue;
 
-            }
-            if(dir.x < 0)// höger sida
-            {
-                if( dir.y < 0)//över
-                {
+        //        if ( (dir.y < angleForSIde && dir.y > -angleForSIde))
+        //        {
 
-                }
-                else //under
-                {
+        //            Gizmos.color = Color.red;
+        //        }
+        //    }
+        //    else //vänster sida
+        //    {
 
-                }
-            }
-            else //vänster sida
-            {
 
-            }
+        //        if ((dir.y < angleForSIde && dir.y > -angleForSIde))
+        //        {
 
-            if (dir.x > 0.0 && dir.x > -0.6)
-            {
-                Gizmos.color = Color.blue;
-            }
+        //            Gizmos.color = Color.red;
+        //        }
+        //        else
+        //        {
+        //            Gizmos.color = Color.green;
+        //        }
 
-            Gizmos.DrawLine(Vector3.zero, temp.transform.position);
 
-        }
+        //    }
+
+  
+
+        //    Gizmos.DrawLine(Vector3.zero, temp.transform.position);
+
+        //}
 
         //Camera curretn = Camera.main;
         //if (curretnCamera != null)
