@@ -7,7 +7,7 @@ public class EnemyMaster : MonoBehaviour
 
     public GameObject prefab_enemy;
     public GameObject targetFlower;
-
+ 
     public float spawnDelayMin = 1f;
     public float spawnDelayMax = 10f;
     public List<GameObject> CurretnEnemys = new List<GameObject>();
@@ -16,11 +16,13 @@ public class EnemyMaster : MonoBehaviour
 
     private Coroutine spawnerLogich;
 
+    MainFlowerBrain mb ;
+    private bool callAllSoldiersBack = false;
 
     private Transform enemyBucket;
     private void Start()
     {
-
+        mb = targetFlower.GetComponent<MainFlowerBrain>();
 
         enemyBucket = new GameObject().transform;
         enemyBucket.name = "enemyBucket";
@@ -33,7 +35,14 @@ public class EnemyMaster : MonoBehaviour
 
     private void Update()
     {
-
+        if (mb.pDead && !callAllSoldiersBack)
+        {
+            callAllSoldiersBack = true;
+            foreach(GameObject gb in CurretnEnemys)
+            {
+                gb.GetComponent<Enemy>().mainFLowerDerad = true;
+            }
+        }
 
 
     }
@@ -66,6 +75,7 @@ public class EnemyMaster : MonoBehaviour
 
         GameObject temp = Instantiate(prefab_enemy, pos, prefab_enemy.transform.rotation, enemyBucket);
         temp.GetComponent<Enemy>().ActivateEnemy(this);
+        temp.GetComponent<Enemy>().mainFLowerDerad = mb.pDead;
         CurretnEnemys.Add(temp);
     }
 
@@ -79,7 +89,8 @@ public class EnemyMaster : MonoBehaviour
 
     public IEnumerator SpawnLogik()
     {
-        while (true)
+
+        while (!mb.pDead)
         {
             yield return new WaitForSeconds(Random.Range(spawnDelayMin, spawnDelayMax));
 

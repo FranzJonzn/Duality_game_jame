@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 /*
@@ -15,12 +16,31 @@ public class UnderHodStuff : MonoBehaviour
 
     public static UnderHodStuff instance;
 
+    public Text hischorText;
+    public Text bragingText;
+    public Text deadList;
+    public Slider deathScroll;
+    public RectTransform deathScroll_RectTransform;
+    public GameObject gameOverScrfeen;
+    private Coroutine memorialScroll;
+    public float scrollSpeed = 0.01f;
+    [Space]
+    [Space]
+
+
+    public float startTime = 0;
+    public float endTime;
+
+    [Space]
+    public int starevSlugs = 0;
 
     private void Start()
     {
         if(instance == null)
         {
+            startTime = Time.time;
             instance = this;
+            gameOverScrfeen.SetActive(false);
         }
         else
         {
@@ -68,22 +88,7 @@ public class UnderHodStuff : MonoBehaviour
             }
         }
 
-        //if (renderers.Count > 7)
-        //{
-        //    int curretn = 0;
-        //    Vector3 lase = Vector3.zero;
-        //    foreach (SpriteRenderer sr in renderers)
-        //    {
-        //        if (curretn != 0)
-        //        {
-        //            Debug.DrawLine(sr.transform.parent.position, lase, Color.red);
-        //        }
-        //        sr.sortingOrder = curretn++;
-        //        lase = sr.transform.parent.position;
 
-        //    }
-
-        //}
 
 
 
@@ -103,23 +108,7 @@ public class UnderHodStuff : MonoBehaviour
 
         }
 
-        // shows the order of the object 
-        //if (renderers.Count > 7)
-        //{
-        //    bool skipFirst = false;
-        //    Vector3 lase = Vector3.zero;
-        //    foreach (SpriteRenderer sr in renderers)
-        //    {
-        //        if (skipFirst)
-        //        {
-        //            Debug.DrawLine(sr.transform.parent.position, lase, Color.red);
-        //        }
-        //        skipFirst = true;
-        //        lase = sr.transform.parent.position;
 
-        //    }
-        //    Debug.LogError("pause");
-        //}
 
     }
 
@@ -137,16 +126,65 @@ public class UnderHodStuff : MonoBehaviour
         }
     }
 
-    private Matrix4x4 RotatZ(float aANgleRad)
+    //private Matrix4x4 RotatZ(float aANgleRad)
+    //{
+    //    Matrix4x4 m = Matrix4x4.identity;
+    //    m.m00 = m.m11 = Mathf.Cos(aANgleRad);
+    //    m.m10 = Mathf.Sin(aANgleRad);
+    //    m.m01 = -m.m10;
+    //    return m;
+    //}
+
+
+
+
+    public void GameOver(MainFlowerBrain flowerBrain)
     {
-        Matrix4x4 m = Matrix4x4.identity;
-        m.m00 = m.m11 = Mathf.Cos(aANgleRad);
-        m.m10 = Mathf.Sin(aANgleRad);
-        m.m01 = -m.m10;
-        return m;
+
+        endTime = Time.time;
+        float playedTime = endTime - startTime;
+        hischorText.text += " " + playedTime + " seconds";
+
+        bragingText.text = starevSlugs + " " + bragingText.text;
+
+        float lenght = (float)flowerBrain.DeadFLowers.Count * 10f;
+
+
+        deathScroll_RectTransform.sizeDelta = new Vector2(lenght*2,deathScroll_RectTransform.sizeDelta.y);
+        deadList.rectTransform.sizeDelta =new Vector2(deadList.rectTransform.sizeDelta.x, lenght);
+
+        string listOfDeadFlowers = "";
+        foreach(GameObject g in flowerBrain.DeadFLowers)
+        {
+            listOfDeadFlowers += g.name + "\n";
+        }
+        deadList.text = listOfDeadFlowers;
+
+        gameOverScrfeen.SetActive(true);
+        memorialScroll = StartCoroutine(CreditScrool());
     }
-    public GameObject temp;
-    public float angleForSIde = 0.4f;
+
+    private IEnumerator CreditScrool()
+    {
+        while (true)
+        {
+            yield return null;// new WaitForSeconds(1f);
+            deathScroll.value = Mathf.Clamp(deathScroll.value+ scrollSpeed*Time.deltaTime, deathScroll.minValue, deathScroll.maxValue);
+
+            if(deathScroll.value == deathScroll.maxValue)
+            {
+                deathScroll.value = deathScroll.minValue;
+            }
+        }
+    }
+
+
+
+
+
+
+
+
     private void OnDrawGizmos()
     {
 

@@ -34,7 +34,8 @@ public class Enemy : MonoBehaviour
     public Collider2D collider_up_diagonal;
     public Collider2D collider_down_diagonal;
     public Collider2D collider_side;
-
+    [Space]
+    public bool mainFLowerDerad = false;
     Coroutine life;
     public void ActivateEnemy(EnemyMaster myMaster)
     {
@@ -62,7 +63,7 @@ public class Enemy : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("her2");
+
         MainFlowerBrain brain = collision.gameObject.GetComponent<MainFlowerBrain>();
         if (brain != null)
         {
@@ -73,11 +74,16 @@ public class Enemy : MonoBehaviour
     }
 
 
+
+
+
     private void Move()
     {
         //looking
         Vector2 dir =( master.targetFlower.transform.position - transform.position).normalized;
 
+        if (mainFLowerDerad)
+            dir = -dir;
 
         Oriante(dir);
 
@@ -99,8 +105,8 @@ public class Enemy : MonoBehaviour
         if (dir.x < 0)// höger sida
         {
 
-            grafick.transform.localScale   = new Vector3(-1, 1, 1);
-            colidders.transform.localScale = new Vector3(-1, 1, 1);
+            grafick.transform.localScale   = new Vector3(1, -1, 1);
+            colidders.transform.localScale = new Vector3(1, -1, 1);
 
         }
         else //vänster sida
@@ -125,7 +131,7 @@ public class Enemy : MonoBehaviour
 
 
                 grafick_side.SetActive(true);
-                collider_side.gameObject.SetActive(true);
+                //collider_side.gameObject.SetActive(true);
                 curretD = currentDirr.SIDE;
             }
         }
@@ -140,7 +146,7 @@ public class Enemy : MonoBehaviour
                 //collider_side.gameObject.SetActive(false);
 
                 grafick_down_diagonal.SetActive(true);
-                collider_down_diagonal.gameObject.SetActive(true);
+                //collider_down_diagonal.gameObject.SetActive(true);
 
                 curretD = currentDirr.DOWN;
             }
@@ -192,7 +198,9 @@ public class Enemy : MonoBehaviour
 
         yield return new WaitForSeconds(Random.Range(lifeTimeMin,lifeTimeMax));
 
-        isAlive = false;
+        UnderHodStuff.instance.starevSlugs += 1;
+
+        isAlive = mainFLowerDerad; // låt snigeln fortsätta leva efter tiden gåt ut så den kan åka av skärmen
 
     }
 

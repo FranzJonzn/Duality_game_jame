@@ -26,7 +26,13 @@ public class MainFlowerBrain : MonoBehaviour
 
 
     private Transform flowerContaintger;
-   
+
+    public bool pDead { get { return life == lifeMin; } }
+    private bool dead = false;
+    private string[] förnamn = { "Kerstin","Annet","Solvej","Jimmy", "Jeniffer", "Gustav", "Albert", "Erik", "Erika", "Anna", "Kristian", "Kristina", "Josef", "Sven", "Ingirid", "Bert", "Knut", "Hugo", "Anton", "Anders", "Anika", "Ulrika", "Tau", "Majsan" };
+    private string[] efternamn = { "Svensson", "Eriskson","Ek", "Silverspare","Gustaffson", "Svärd", "Dag och Nat", "Jonson", "Jonsson", "Jonzon", "Jonzzon", "Vasa", "Björnson", "Eriskdotter", "Björklund", "Brosson" };
+
+
     private void Start()
     {
 
@@ -43,6 +49,8 @@ public class MainFlowerBrain : MonoBehaviour
 
     void Update()
     {
+        if (life == lifeMin)
+            return;
 
         if (Input.GetMouseButtonDown(0))
         {
@@ -50,7 +58,7 @@ public class MainFlowerBrain : MonoBehaviour
 
 
             GameObject newFlowe = Instantiate(prefab_flower, UnderHodStuff.instance.getMousPosition, prefab_flower.transform.rotation, flowerContaintger); //, Quaternion.identity);
-
+            newFlowe.name = förnamn[Random.Range(0,förnamn.Length)] +" "+ efternamn[Random.Range(0,efternamn.Length)];
             newFlowe.GetComponent<AttackFlower>().ActiveFLower(this);
             ActiveFlowers.Add(newFlowe);
 
@@ -68,6 +76,7 @@ public class MainFlowerBrain : MonoBehaviour
                 ActiveFlowers.Remove(hit.collider.gameObject);
                 life = Mathf.Clamp(life+ hit.collider.GetComponent<AttackFlower>().Kill(), lifeMin, lifeMax);
                 UppdateSprite();
+
             }
             
 
@@ -89,6 +98,15 @@ public class MainFlowerBrain : MonoBehaviour
         life = Mathf.Clamp(life-damage, lifeMin, lifeMax);
 
         UppdateSprite();
+
+
+
+        if ( !dead && life == lifeMin)
+        {
+            dead = true;
+            UnderHodStuff.instance.GameOver(this);
+        }
+
 
     }
 
