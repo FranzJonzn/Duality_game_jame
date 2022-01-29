@@ -1,21 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AttackFlower : MonoBehaviour
 {
-    public bool alive = true;
+    public bool isAlive = true;
     MainFlowerBrain ref_mainFlower;
 
     public float costPerSecond = 1f;
     public float lifeBackOnDef = 5f;
 
-    public GameObject aliveGraphic;
-    public GameObject deadGraphic;
+    public GameObject alive;
+    public GameObject dead;
 
-
-    public Collider2D thisCollider;
     private Coroutine draineRoutine;
+
+
+    public Color weakColor = Color.yellow;
+    public Color strongColor = Color.red;
+
 
     public float MaxLifeRetun = 100;
     private float lifeDrainde = 0;
@@ -33,22 +37,29 @@ public class AttackFlower : MonoBehaviour
 
     public float Kill()
     {
-        aliveGraphic.SetActive(false);
-        deadGraphic.SetActive(true);
-        thisCollider.enabled = false;
-        alive = false;
+        alive.SetActive(false);
+        dead.SetActive(true);
+        isAlive = false;
         StopCoroutine(draineRoutine);
-        return Mathf.Clamp( lifeDrainde, 0, MaxLifeRetun);
+        return lifeDrainde;
     }
 
   
 
     private IEnumerator draineLife()
     {
-        while (alive)
+        while (isAlive)
         {
-            lifeDrainde += costPerSecond;
+            lifeDrainde = Mathf.Clamp(lifeDrainde+ costPerSecond, 0, MaxLifeRetun); ;
             ref_mainFlower.Damage(costPerSecond);
+
+            Image[] images = alive.GetComponentsInChildren<Image>();
+            
+            foreach(Image i in images)
+            {
+                i.color = Color.Lerp(weakColor, strongColor, lifeDrainde / MaxLifeRetun);
+            }
+
             yield return new WaitForSeconds(1);
         }
 

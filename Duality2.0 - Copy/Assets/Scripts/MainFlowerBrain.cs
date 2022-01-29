@@ -13,10 +13,16 @@ public class MainFlowerBrain : MonoBehaviour
 
     public LayerMask floweMask;
 
+
+
+    public Color weakColor = Color.yellow;
+    public Color strongColor = Color.red;
+
     public List<GameObject> ActiveFlowers = new List<GameObject>();
     public List<GameObject> DeadFLowers = new List<GameObject>();
 
     private Transform flowerContaintger;
+   
     private void Start()
     {
 
@@ -60,6 +66,13 @@ public class MainFlowerBrain : MonoBehaviour
         }
 
         _lifeBar.value = life;
+
+        Image[] images = GetComponentsInChildren<Image>();
+
+        foreach (Image i in images)
+        {
+            i.color = Color.Lerp(weakColor, strongColor, life / _lifeBar.maxValue);
+        }
     }
 
     public void Damage(float damage)
