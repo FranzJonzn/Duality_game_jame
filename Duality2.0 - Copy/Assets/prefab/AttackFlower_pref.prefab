@@ -604,8 +604,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26fc62aa515dbf14d9974307ef09fb60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onBorn: []
-  onDeath: []
+  onBorn:
+  - {fileID: 8300000, guid: 9a744b4e624f5fe479a57f3676cfa4a0, type: 3}
+  - {fileID: 8300000, guid: 03bd37727d90eb144876dc26a69568d1, type: 3}
+  - {fileID: 8300000, guid: fb98cd33eac155547ac18232bd1c5742, type: 3}
+  onDeath:
+  - {fileID: 8300000, guid: dccb188c40aefa845a555a1e6887422e, type: 3}
+  - {fileID: 8300000, guid: 0f3558149c99a7147a37117e20eb0abf, type: 3}
+  - {fileID: 8300000, guid: 96c404a4c754caf4c835513d5c6eefcc, type: 3}
   audioSource: {fileID: 6077731031663002004}
 --- !u!1 &5970092440133636647
 GameObject:

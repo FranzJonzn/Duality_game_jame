@@ -947,7 +947,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   onBorn: []
-  onDeath: []
+  onDeath:
+  - {fileID: 8300000, guid: 04758ce4a272164419eca5cf98f261b9, type: 3}
+  - {fileID: 8300000, guid: ff88ac9d4f0c62443a40e9fbbad6ad5b, type: 3}
+  - {fileID: 8300000, guid: a669927427d822e4387d014a7f647a48, type: 3}
   audioSource: {fileID: 4615761088212451235}
 --- !u!1001 &1210968261416733263
 PrefabInstance:
