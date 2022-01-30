@@ -34,6 +34,9 @@ public class UnderHodStuff : MonoBehaviour
     [Space]
     public float startTime = 0;
     public float endTime;
+    public List<float> pauseTime = new List<float>();
+    public float pauseStartTime = 0;
+    public float pauseEndTime;
 
     [Space]
     public int starevSlugs = 0;
@@ -62,10 +65,33 @@ public class UnderHodStuff : MonoBehaviour
     public Rect playFeild { get { return new Rect(new Vector2(0,0),
                                                   curretnCamera.ScreenToWorldPoint( new Vector2(curretnCamera.scaledPixelWidth*1.5f , curretnCamera.scaledPixelHeight* 1.5f))); } }
 
-
+    bool pause = false;
 
     private void Update()
     {
+        //contrar pause tide, så den kan dras från slut tiden i slutet
+        if(Time.timeScale == 0)
+        {
+            if (!pause)
+            {
+                pauseStartTime = Time.time;
+                pause = true;
+
+            }
+        }
+        else
+        {
+            if (pause)
+            {
+                pauseEndTime = Time.time;
+                pauseTime.Add(pauseEndTime - startTime);
+                pause = false ;
+            }
+        }
+
+
+
+
 
         SortAllSPrites();
 
@@ -151,6 +177,14 @@ public class UnderHodStuff : MonoBehaviour
 
         endTime = Time.time;
         float playedTime = endTime - startTime;
+
+        //suptraherar pausad tid
+        foreach(float t in pauseTime)
+        {
+            playedTime -= t;
+        }
+
+
         hischorText.text += " " + playedTime + " seconds";
 
         bragingText.text = starevSlugs + " " + bragingText.text;
@@ -199,12 +233,6 @@ public class UnderHodStuff : MonoBehaviour
             }
         }
     }
-
-
-
-
-
-
 
 
     private void OnDrawGizmos()
@@ -275,4 +303,6 @@ public class UnderHodStuff : MonoBehaviour
         //    Gizmos.DrawCube(playFeild.position, playFeild.size);
         //}
     }
+
+
 }

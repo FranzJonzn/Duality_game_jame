@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 using UnityEngine.UI;
 
 public class MainFlowerBrain : MonoBehaviour
@@ -49,7 +50,8 @@ public class MainFlowerBrain : MonoBehaviour
 
     void Update()
     {
-        if (life == lifeMin)
+        //timscale för att blocka input när man pausat
+        if (life == lifeMin || Time.timeScale == 0)
             return;
 
         if (Input.GetMouseButtonDown(0))
@@ -130,6 +132,8 @@ public class MainFlowerBrain : MonoBehaviour
     //        yield return new WaitForSeconds(blincSec);
     //    }
     //}
+
+
 
 
 }

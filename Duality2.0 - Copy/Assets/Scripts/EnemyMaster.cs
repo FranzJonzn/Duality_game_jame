@@ -35,6 +35,10 @@ public class EnemyMaster : MonoBehaviour
 
     private void Update()
     {
+
+        
+
+
         if (mb.pDead && !callAllSoldiersBack)
         {
             callAllSoldiersBack = true;
@@ -95,7 +99,9 @@ public class EnemyMaster : MonoBehaviour
             yield return new WaitForSeconds(Random.Range(spawnDelayMin, spawnDelayMax));
 
             yield return null;
-            spwanEnemy();
+            //pausa fiender när man pausat
+            if (Time.timeScale != 0)
+                spwanEnemy();
         }
     }
 
