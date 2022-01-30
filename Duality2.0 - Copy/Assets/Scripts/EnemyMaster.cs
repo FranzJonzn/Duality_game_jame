@@ -85,6 +85,9 @@ public class EnemyMaster : MonoBehaviour
 
     public void KillMe(Enemy toKill)
     {
+
+
+
         CurretnEnemys.Remove(toKill.gameObject);
 
         Destroy(toKill.gameObject);

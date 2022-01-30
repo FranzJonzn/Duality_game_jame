@@ -30,6 +30,10 @@ public class Enemy : MonoBehaviour
     public GameObject grafick_side;
     [Space]
     [Space]
+    [Tooltip("har den här pga dödar fienden här")]
+    public AudioManager soundManager;
+    [Space]
+    [Space]
     //public GameObject colidders;
     //public Collider2D collider_up_diagonal;
     //public Collider2D collider_down_diagonal;
@@ -44,7 +48,7 @@ public class Enemy : MonoBehaviour
         life = StartCoroutine(LifeTime());
     }
 
-
+    bool starteSOund = false;
     private void Update()
     {
 
@@ -53,23 +57,45 @@ public class Enemy : MonoBehaviour
 
             Move();
         }
-        if (!isAlive)
+        if (!isAlive && !starteSOund)
         {
-            master.KillMe(this);
+            starteSOund = true;
+            StartCoroutine(whaitForSOund());
+
         }
     }
-
-
+    bool playsound = true;
+    float delay = 4f;
+    private IEnumerator cooldow()
+    {
+        yield return new WaitForSeconds(Random.Range(4, 20));
+        playsound = true;
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+ 
+      
+          
+ 
+   
+
 
         MainFlowerBrain brain = collision.gameObject.GetComponent<MainFlowerBrain>();
         if (brain != null)
         {
+
+            soundManager.PlayOnBorn();
+
             brain.Damage(damageOnInpact);
             StopCoroutine(life);
             isAlive = false;
+        }
+        else if (playsound && Random.Range(-2, 34) < 0)
+        {
+            soundManager.PlayOnBorn();
+            StartCoroutine(cooldow());
+            playsound = false;
         }
     }
 
@@ -100,94 +126,23 @@ public class Enemy : MonoBehaviour
 
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-        float angleForSIde = 0.2f;
+
 
         if (dir.x < 0)// höger sida
         {
 
             grafick.transform.localScale   = new Vector3(1, -1, 1);
-            //colidders.transform.localScale = new Vector3(1, -1, 1);
+
 
         }
         else //vänster sida
         {
 
             grafick.transform.localScale   = new Vector3(1, 1, 1);
-            //colidders.transform.localScale = new Vector3(1, 1, 1);
   
         }
 
-        //collider_side.gameObject.SetActive(true);
 
-        //if ((dir.y < angleForSIde && dir.y > -angleForSIde))
-        //{
-        //    if (curretD != currentDirr.SIDE)
-        //    {
-        //        grafick_down_diagonal.SetActive(false);
-        //        grafick_up_diagonal.SetActive(false);
-        //        //collider_down_diagonal.gameObject.SetActive(false);
-        //        //collider_up_diagonal.gameObject.SetActive(false);
-
-
-
-        //        grafick_side.SetActive(true);
-        //        //collider_side.gameObject.SetActive(true);
-        //        curretD = currentDirr.SIDE;
-        //    }
-        //}
-        //else if (dir.y < 0)
-        //{
-
-        //    if (curretD != currentDirr.DOWN)
-        //    {
-        //        grafick_up_diagonal.SetActive(false);
-        //        grafick_side.SetActive(false);
-        //        //collider_up_diagonal.gameObject.SetActive(false);
-        //        //collider_side.gameObject.SetActive(false);
-
-        //        grafick_down_diagonal.SetActive(true);
-        //        //collider_down_diagonal.gameObject.SetActive(true);
-
-        //        curretD = currentDirr.DOWN;
-        //    }
-        //}
-        //else
-        //{
-
-        //    if(curretD != currentDirr.UP)
-        //    {
-        //        grafick_down_diagonal.SetActive(false);
-        //        grafick_side.SetActive(false);
-        //        //collider_side.gameObject.SetActive(false);
-
-
-        //        grafick_up_diagonal.SetActive(true);
-        //        //collider_up_diagonal.gameObject.SetActive(true);
-
-        //        curretD = currentDirr.UP;
-        //    }
-
-  
-
-        //}
-
-
-
-
-
-        //Debug.Log(transform.eulerAngles.z);
-
-
-        //if (transform.eulerAngles.z > 90 && transform.eulerAngles.z < 275)
-        //{
-        //    grafick.transform.localScale = new Vector3(1, -1, 1);
-        //    colidders.transform.localScale = new Vector3(1, -1, 1);
-        //}
-        //else
-        //{
-        //    grafick.transform.localScale = new Vector3(1, 1, 1);
-        //    colidders.transform.localScale = new Vector3(1, 1, 1);
-        //}
 
     }
 
@@ -201,9 +156,34 @@ public class Enemy : MonoBehaviour
         UnderHodStuff.instance.starevSlugs += 1;
 
         isAlive = mainFLowerDerad; // låt snigeln fortsätta leva efter tiden gåt ut så den kan åka av skärmen
+    
+
 
     }
 
 
+
+
+
+
+    public IEnumerator whaitForSOund()
+    {
+        soundManager.PlayOnDeath();
+
+        grafick.SetActive(false);
+
+        yield return new WaitForSeconds( lifeTimeMax);
+
+        UnderHodStuff.instance.starevSlugs += 1;
+
+        isAlive = mainFLowerDerad; // låt snigeln fortsätta leva efter tiden gåt ut så den kan åka av skärmen
+
+
+
+        if (!isAlive)
+        {
+            master.KillMe(this);
+        }
+    }
 
 }

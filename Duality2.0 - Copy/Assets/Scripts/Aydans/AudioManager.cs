@@ -5,17 +5,28 @@ using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
 public class AudioManager : MonoBehaviour
 {
-    public AudioClip impact;
-    AudioSource audioSource;
+   
+
+    public AudioClip[] onBorn;
+    public AudioClip[] onDeath;
+
+
+
+    public AudioSource audioSource;
     
    
-    private void Start()
+
+
+    public void PlayOnBorn()
     {
-        audioSource = GetComponent<AudioSource>();
+        if(onBorn.Length > 0)
+               audioSource.PlayOneShot(onBorn[Random.Range(0, onBorn.Length)]);
     }
-     
-    private void Awake()
+
+    public void PlayOnDeath()
     {
-        audioSource.PlayOneShot(impact, 0.7F);
+        if (onDeath.Length > 0)
+            audioSource.PlayOneShot(onDeath[Random.Range(0, onDeath.Length)]);
     }
+
 }

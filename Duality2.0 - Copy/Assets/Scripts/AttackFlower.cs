@@ -18,7 +18,9 @@ public class AttackFlower : MonoBehaviour
     private Coroutine draineRoutine;
 
     public ParticleSystem drainePowe;
-
+    [Space]
+    [Space]
+    public AudioManager soundManager;
     //public Color weakColor = Color.yellow;
     //public Color strongColor = Color.red;
 
@@ -29,11 +31,13 @@ public class AttackFlower : MonoBehaviour
     {
 
 
-   
 
+  
 
-        if(ref_mainFlower == null)
+        if (ref_mainFlower == null)
         {
+
+
             ref_mainFlower = brain;
             draineRoutine = StartCoroutine(draineLife());
 
@@ -46,7 +50,7 @@ public class AttackFlower : MonoBehaviour
             transform.localScale = new Vector3(random1, 1, 1);
 
         }
-
+        soundManager.PlayOnBorn();
         if (drainePowe != null)
         {
             drainePowe.transform.position = new Vector3(ref_mainFlower.transform.position.x, ref_mainFlower.transform.position.y, -5f);
@@ -79,6 +83,7 @@ public class AttackFlower : MonoBehaviour
         clickColider.enabled = false;
         isAlive = false;
         StopCoroutine(draineRoutine);
+        soundManager.PlayOnDeath();
         return lifeDrainde;
     }
 
