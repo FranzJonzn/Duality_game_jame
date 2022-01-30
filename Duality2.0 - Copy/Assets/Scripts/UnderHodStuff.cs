@@ -184,8 +184,30 @@ public class UnderHodStuff : MonoBehaviour
             playedTime -= t;
         }
 
+        int roundedTime = (int)(playedTime + 0.5f);
 
-        hischorText.text += " " + playedTime + " seconds";
+        if (roundedTime > 60)
+        {
+            roundedTime = (int)((playedTime / 60f)+0.5f);
+
+            if(roundedTime > 60)
+            {
+                hischorText.text += " (hur katten speladad du detta i mer än en time?) " + roundedTime + " min";
+            }
+            else
+            {
+                hischorText.text += " " + roundedTime + " min";
+            }
+
+        }
+        else
+        {
+
+
+            hischorText.text += " " + roundedTime + " seconds";
+        }
+
+
 
         bragingText.text = starevSlugs + " " + bragingText.text;
 
