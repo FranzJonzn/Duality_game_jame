@@ -163,7 +163,7 @@ GameObject:
   m_Component:
   - component: {fileID: 264178060}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: particleColisionPLane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -311,6 +311,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c62daf8bf5c04a44581dc3608042b118, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  particlePlaneColider: {fileID: 264178060}
   hischorText: {fileID: 1716636740}
   bragingText: {fileID: 1012079744}
   deadList: {fileID: 536819609}
