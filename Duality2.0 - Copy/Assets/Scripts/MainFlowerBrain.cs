@@ -30,7 +30,7 @@ public class MainFlowerBrain : MonoBehaviour
 
     public bool pDead { get { return life == lifeMin; } }
     private bool dead = false;
-    private string[] förnamn = { "Kerstin","Annet","Solvej","Jimmy", "Jeniffer", "Gustav", "Albert", "Erik", "Erika", "Anna", "Kristian", "Kristina", "Josef", "Sven", "Ingirid", "Bert", "Knut", "Hugo", "Anton", "Anders", "Anika", "Ulrika", "Tau", "Majsan" };
+    private string[] förnamn = { "Kerstin","Annet", "Linea","Solvej","Jimmy", "Jeniffer", "Gustav", "Albert", "Erik", "Erika", "Anna", "Kristian", "Kristina", "Josef", "Sven", "Ingirid", "Bert", "Knut", "Hugo", "Anton", "Anders", "Anika", "Ulrika", "Tau", "Majsan" };
     private string[] efternamn = { "Svensson", "Eriskson","Ek", "Silverspare","Gustaffson", "Svärd", "Dag och Nat", "Jonson", "Jonsson", "Jonzon", "Jonzzon", "Vasa", "Björnson", "Eriskdotter", "Björklund", "Brosson" };
 
 

@@ -154,6 +154,8 @@ MonoBehaviour:
   alive: {fileID: 1971297207492867504}
   dead: {fileID: 6250108872513382130}
   coliders: {fileID: 3177497340305354195}
+  clickColider: {fileID: 2315450902835421654}
+  drainePowe: {fileID: 0}
   MaxLifeRetun: 25
 --- !u!61 &2315450902835421654
 BoxCollider2D:
@@ -359,7 +361,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6192011863902040433}
   - component: {fileID: 1643619650540877671}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -562,7 +564,7 @@ GameObject:
   - component: {fileID: 1754247343858876012}
   - component: {fileID: 7293309057470861089}
   - component: {fileID: 4161945881926804865}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: GameObject (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
