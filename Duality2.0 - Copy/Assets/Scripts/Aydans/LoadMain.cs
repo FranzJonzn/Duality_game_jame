@@ -7,6 +7,6 @@ public class LoadMain : MonoBehaviour
 {
     public void MainScene(string SampleScene)
     {
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("Franz_test");
     }
 }
