@@ -24,10 +24,14 @@ public class UnderHodStuff : MonoBehaviour
     public GameObject gameOverScrfeen;
     private Coroutine memorialScroll;
     public float scrollSpeed = 0.01f;
+
     [Space]
     [Space]
-
-
+    public Texture2D cursorTexture;
+    public CursorMode cursorMode = CursorMode.Auto;
+    public Vector2 hotSpot = Vector2.zero;
+    [Space]
+    [Space]
     public float startTime = 0;
     public float endTime;
 
@@ -36,6 +40,10 @@ public class UnderHodStuff : MonoBehaviour
 
     private void Start()
     {
+
+        Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
+
+
         if(instance == null)
         {
             startTime = Time.time;
@@ -147,14 +155,16 @@ public class UnderHodStuff : MonoBehaviour
 
         bragingText.text = starevSlugs + " " + bragingText.text;
 
-        float lenght = (float)flowerBrain.DeadFLowers.Count * 10f;
+       float scrollLengh = (float)flowerBrain.DeadFlowers.Count * deadList.fontSize;
+
+        float oldLengh = deathScroll_RectTransform.sizeDelta.y;
+        deathScroll_RectTransform.sizeDelta = new Vector2( deathScroll_RectTransform.sizeDelta.x, scrollLengh*1.1f + deathScroll_RectTransform.sizeDelta.y);
+        //deadList.rectTransform.sizeDelta =new Vector2(deadList.rectTransform.sizeDelta.x, scrollLengh);
 
 
-        deathScroll_RectTransform.sizeDelta = new Vector2(lenght*2,deathScroll_RectTransform.sizeDelta.y);
-        deadList.rectTransform.sizeDelta =new Vector2(deadList.rectTransform.sizeDelta.x, lenght);
 
         string listOfDeadFlowers = "";
-        foreach(GameObject g in flowerBrain.DeadFLowers)
+        foreach(GameObject g in flowerBrain.DeadFlowers)
         {
             listOfDeadFlowers += g.name + "\n";
         }
@@ -164,16 +174,28 @@ public class UnderHodStuff : MonoBehaviour
         memorialScroll = StartCoroutine(CreditScrool());
     }
 
+
+
+   
     private IEnumerator CreditScrool()
     {
+
+
+
+        float time = 0 ;
         while (true)
         {
             yield return null;// new WaitForSeconds(1f);
-            deathScroll.value = Mathf.Clamp(deathScroll.value+ scrollSpeed*Time.deltaTime, deathScroll.minValue, deathScroll.maxValue);
+                              // deathScroll.value = Mathf.Clamp(deathScroll.value+ scaledScrollSpeed * Time.deltaTime, deathScroll.minValue, deathScroll.maxValue);
+
+            deathScroll.value = Mathf.Lerp(deathScroll.minValue, deathScroll.maxValue, time / scrollSpeed);
+
+            time += Time.deltaTime;
 
             if(deathScroll.value == deathScroll.maxValue)
             {
                 deathScroll.value = deathScroll.minValue;
+                time = 0;
             }
         }
     }
