@@ -62,13 +62,19 @@ public class AttackFlower : MonoBehaviour
     }
 
 
-
+    private void Update()
+    {
+        if (isAlive && ref_mainFlower.pDead)
+        {
+            drainePowe.Stop();
+        }
+    }
     public float Kill()
     {
         alive.SetActive(false);
         dead.SetActive(true);
         coliders.SetActive(false);
-        drainePowe.gameObject.SetActive(false);
+        drainePowe.Stop();// .SetActive(false);
 
         clickColider.enabled = false;
         isAlive = false;
@@ -85,6 +91,8 @@ public class AttackFlower : MonoBehaviour
             lifeDrainde = Mathf.Clamp(lifeDrainde+ costPerSecond, 0, MaxLifeRetun); ;
             ref_mainFlower.Damage(costPerSecond);
 
+
+        
             //SpriteRenderer[] sr = alive.GetComponentsInChildren<SpriteRenderer>();
 
             //foreach (Image i in sr)
