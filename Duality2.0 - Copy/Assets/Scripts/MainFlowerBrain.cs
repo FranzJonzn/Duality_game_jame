@@ -50,6 +50,8 @@ public class MainFlowerBrain : MonoBehaviour
 
     void Update()
     {
+        
+
         //timscale för att blocka input när man pausat
         if (life == lifeMin || Time.timeScale == 0)
             return;

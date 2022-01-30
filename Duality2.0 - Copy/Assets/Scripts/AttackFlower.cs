@@ -29,7 +29,7 @@ public class AttackFlower : MonoBehaviour
     {
 
 
-
+   
 
 
         if(ref_mainFlower == null)
@@ -47,17 +47,35 @@ public class AttackFlower : MonoBehaviour
 
         }
 
+        if (drainePowe != null)
+        {
+            drainePowe.transform.position = new Vector3(ref_mainFlower.transform.position.x, ref_mainFlower.transform.position.y, -5f);
+            drainePowe.transform.localScale = transform.localScale;
 
+           
+               drainePowe.transform.LookAt(transform.position);
+
+
+            drainePowe.collision.AddPlane(UnderHodStuff.instance.particlePlaneColider);
+        }
 
     }
 
 
-
+    private void Update()
+    {
+        if (isAlive && ref_mainFlower.pDead)
+        {
+            drainePowe.Stop();
+        }
+    }
     public float Kill()
     {
         alive.SetActive(false);
         dead.SetActive(true);
         coliders.SetActive(false);
+        drainePowe.Stop();// .SetActive(false);
+
         clickColider.enabled = false;
         isAlive = false;
         StopCoroutine(draineRoutine);
@@ -73,6 +91,8 @@ public class AttackFlower : MonoBehaviour
             lifeDrainde = Mathf.Clamp(lifeDrainde+ costPerSecond, 0, MaxLifeRetun); ;
             ref_mainFlower.Damage(costPerSecond);
 
+
+        
             //SpriteRenderer[] sr = alive.GetComponentsInChildren<SpriteRenderer>();
 
             //foreach (Image i in sr)

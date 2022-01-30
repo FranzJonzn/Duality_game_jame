@@ -13,7 +13,7 @@ using UnityEngine.UI;
 public class UnderHodStuff : MonoBehaviour
 {
 
-
+    public Transform particlePlaneColider;
     public static UnderHodStuff instance;
 
     public Text hischorText;
