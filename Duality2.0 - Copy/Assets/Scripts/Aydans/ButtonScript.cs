@@ -6,10 +6,9 @@ using UnityEngine.UI;
 public class ButtonScript : MonoBehaviour
 {
 
-    public void QuitGame(string QuitGame)
+    void Start()
     {
-        Debug.Log("does it even quit?");
-        Application.Quit();
+        this.GetComponent<Image>().alphaHitTestMinimumThreshold = 0.1f;
     }
 
 }
