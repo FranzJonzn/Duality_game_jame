@@ -78,7 +78,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: In memory of the brave sapling how sacrafice shal not be forgoten
+  m_Text: In memory of the brave saplings, whose sacrifice shall not to be forgotten
 --- !u!1 &9066896199535773325
 GameObject:
   m_ObjectHideFlags: 0
@@ -344,7 +344,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'The brave plant held out agains the attack for a total of:'
+  m_Text: "The brave plants held out against the attack f\xF6r a total of:"
 --- !u!1 &9066896200142353683
 GameObject:
   m_ObjectHideFlags: 0
@@ -742,4 +742,4 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "[f\xF6r\xE4diska p\xE5 engelska] slugs was staved to death."
+  m_Text: treacherous snails starved to death.
