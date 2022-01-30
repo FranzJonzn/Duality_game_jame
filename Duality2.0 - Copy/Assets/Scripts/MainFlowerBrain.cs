@@ -16,7 +16,7 @@ public class MainFlowerBrain : MonoBehaviour
     [Space]
 
     public List<GameObject> ActiveFlowers = new List<GameObject>();
-    public List<GameObject> DeadFLowers = new List<GameObject>();
+    public List<GameObject> DeadFlowers = new List<GameObject>();
     [Space]
     [Space]
 
@@ -72,11 +72,12 @@ public class MainFlowerBrain : MonoBehaviour
 
             if (hit)
             {
-                DeadFLowers.Add(hit.collider.gameObject);
+                DeadFlowers.Add(hit.collider.gameObject);
                 ActiveFlowers.Remove(hit.collider.gameObject);
                 life = Mathf.Clamp(life+ hit.collider.GetComponent<AttackFlower>().Kill(), lifeMin, lifeMax);
                 UppdateSprite();
 
+                ControllIfDead();
             }
             
 
@@ -89,7 +90,14 @@ public class MainFlowerBrain : MonoBehaviour
     }
 
   
-
+    private void ControllIfDead()
+    {
+        if (!dead && life == lifeMin)
+        {
+            dead = true;
+            UnderHodStuff.instance.GameOver(this);
+        }
+    }
 
     public void Damage(float damage)
     {
@@ -101,11 +109,7 @@ public class MainFlowerBrain : MonoBehaviour
 
 
 
-        if ( !dead && life == lifeMin)
-        {
-            dead = true;
-            UnderHodStuff.instance.GameOver(this);
-        }
+        ControllIfDead();
 
 
     }
