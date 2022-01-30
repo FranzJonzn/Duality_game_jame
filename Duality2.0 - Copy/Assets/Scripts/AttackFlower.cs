@@ -13,12 +13,12 @@ public class AttackFlower : MonoBehaviour
     
     public GameObject alive;
     public GameObject dead;
-    public Collider2D colider;
+    public GameObject coliders;
     private Coroutine draineRoutine;
 
 
-    public Color weakColor = Color.yellow;
-    public Color strongColor = Color.red;
+    //public Color weakColor = Color.yellow;
+    //public Color strongColor = Color.red;
 
 
     public float MaxLifeRetun = 100;
@@ -50,7 +50,7 @@ public class AttackFlower : MonoBehaviour
     {
         alive.SetActive(false);
         dead.SetActive(true);
-        colider.enabled = false;
+        coliders.SetActive(false);
         isAlive = false;
         StopCoroutine(draineRoutine);
         return lifeDrainde;
@@ -65,12 +65,12 @@ public class AttackFlower : MonoBehaviour
             lifeDrainde = Mathf.Clamp(lifeDrainde+ costPerSecond, 0, MaxLifeRetun); ;
             ref_mainFlower.Damage(costPerSecond);
 
-            Image[] images = alive.GetComponentsInChildren<Image>();
+            //Image[] images = alive.GetComponentsInChildren<Image>();
             
-            foreach(Image i in images)
-            {
-                i.color = Color.Lerp(weakColor, strongColor, lifeDrainde / MaxLifeRetun);
-            }
+            //foreach(Image i in images)
+            //{
+            //    i.color = Color.Lerp(weakColor, strongColor, lifeDrainde / MaxLifeRetun);
+            //}
 
             yield return new WaitForSeconds(1);
         }

@@ -30,11 +30,11 @@ public class Enemy : MonoBehaviour
     public GameObject grafick_side;
     [Space]
     [Space]
-    public GameObject colidders;
-    public Collider2D collider_up_diagonal;
-    public Collider2D collider_down_diagonal;
-    public Collider2D collider_side;
-    [Space]
+    //public GameObject colidders;
+    //public Collider2D collider_up_diagonal;
+    //public Collider2D collider_down_diagonal;
+    //public Collider2D collider_side;
+    //[Space]
     public bool mainFLowerDerad = false;
     Coroutine life;
     public void ActivateEnemy(EnemyMaster myMaster)
@@ -106,70 +106,70 @@ public class Enemy : MonoBehaviour
         {
 
             grafick.transform.localScale   = new Vector3(1, -1, 1);
-            colidders.transform.localScale = new Vector3(1, -1, 1);
+            //colidders.transform.localScale = new Vector3(1, -1, 1);
 
         }
         else //vänster sida
         {
 
             grafick.transform.localScale   = new Vector3(1, 1, 1);
-            colidders.transform.localScale = new Vector3(1, 1, 1);
+            //colidders.transform.localScale = new Vector3(1, 1, 1);
   
         }
 
-        collider_side.gameObject.SetActive(true);
+        //collider_side.gameObject.SetActive(true);
 
-        if ((dir.y < angleForSIde && dir.y > -angleForSIde))
-        {
-            if (curretD != currentDirr.SIDE)
-            {
-                grafick_down_diagonal.SetActive(false);
-                grafick_up_diagonal.SetActive(false);
-                //collider_down_diagonal.gameObject.SetActive(false);
-                //collider_up_diagonal.gameObject.SetActive(false);
-
-
-
-                grafick_side.SetActive(true);
-                //collider_side.gameObject.SetActive(true);
-                curretD = currentDirr.SIDE;
-            }
-        }
-        else if (dir.y < 0)
-        {
-
-            if (curretD != currentDirr.DOWN)
-            {
-                grafick_up_diagonal.SetActive(false);
-                grafick_side.SetActive(false);
-                //collider_up_diagonal.gameObject.SetActive(false);
-                //collider_side.gameObject.SetActive(false);
-
-                grafick_down_diagonal.SetActive(true);
-                //collider_down_diagonal.gameObject.SetActive(true);
-
-                curretD = currentDirr.DOWN;
-            }
-        }
-        else
-        {
-
-            if(curretD != currentDirr.UP)
-            {
-                grafick_down_diagonal.SetActive(false);
-                grafick_side.SetActive(false);
-                //collider_side.gameObject.SetActive(false);
+        //if ((dir.y < angleForSIde && dir.y > -angleForSIde))
+        //{
+        //    if (curretD != currentDirr.SIDE)
+        //    {
+        //        grafick_down_diagonal.SetActive(false);
+        //        grafick_up_diagonal.SetActive(false);
+        //        //collider_down_diagonal.gameObject.SetActive(false);
+        //        //collider_up_diagonal.gameObject.SetActive(false);
 
 
-                grafick_up_diagonal.SetActive(true);
-                //collider_up_diagonal.gameObject.SetActive(true);
 
-                curretD = currentDirr.UP;
-            }
+        //        grafick_side.SetActive(true);
+        //        //collider_side.gameObject.SetActive(true);
+        //        curretD = currentDirr.SIDE;
+        //    }
+        //}
+        //else if (dir.y < 0)
+        //{
+
+        //    if (curretD != currentDirr.DOWN)
+        //    {
+        //        grafick_up_diagonal.SetActive(false);
+        //        grafick_side.SetActive(false);
+        //        //collider_up_diagonal.gameObject.SetActive(false);
+        //        //collider_side.gameObject.SetActive(false);
+
+        //        grafick_down_diagonal.SetActive(true);
+        //        //collider_down_diagonal.gameObject.SetActive(true);
+
+        //        curretD = currentDirr.DOWN;
+        //    }
+        //}
+        //else
+        //{
+
+        //    if(curretD != currentDirr.UP)
+        //    {
+        //        grafick_down_diagonal.SetActive(false);
+        //        grafick_side.SetActive(false);
+        //        //collider_side.gameObject.SetActive(false);
+
+
+        //        grafick_up_diagonal.SetActive(true);
+        //        //collider_up_diagonal.gameObject.SetActive(true);
+
+        //        curretD = currentDirr.UP;
+        //    }
 
   
 
-        }
+        //}
 
 
 
