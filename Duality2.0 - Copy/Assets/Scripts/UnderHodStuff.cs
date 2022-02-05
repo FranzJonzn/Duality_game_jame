@@ -25,11 +25,7 @@ public class UnderHodStuff : MonoBehaviour
     private Coroutine memorialScroll;
     public float scrollSpeed = 0.01f;
 
-    [Space]
-    [Space]
-    public Texture2D cursorTexture;
-    public CursorMode cursorMode = CursorMode.Auto;
-    public Vector2 hotSpot = Vector2.zero;
+
     [Space]
     [Space]
     public float startTime = 0;
@@ -43,8 +39,6 @@ public class UnderHodStuff : MonoBehaviour
 
     private void Start()
     {
-
-        Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
 
 
         if(instance == null)
